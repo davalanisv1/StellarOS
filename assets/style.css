@@ -1,20 +1,16 @@
-.closebutton {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    background-color: #fa7900;
-    border-radius: 16px;
-    border: solid 1px rgba(0, 0, 0, 0.25);
+html, body {
     margin: 0;
     padding: 0;
-    position: absolute;
-    top: 26px;
-    right: 14px;
-    z-index: 1;
+    height: 100%;
+    overflow: hidden;
+    cursor: none;
 }
 
+a, button, input, [contenteditable="true"], .windowheader, .closebutton, .note-preview-item, #notesshortcut {
+    cursor: none !important;
+}
 
-.window{
+.window {
     border: solid #ff831d; 
     margin: 0 auto; 
     display: flex;
@@ -24,90 +20,151 @@
     max-width: calc(100vw - 40px);
     box-sizing: border-box;
     border-radius: 32px; 
-  position: absolute; 
-  background-color: #2b1800a8; 
-  backdrop-filter: blur(10px); 
+    position: absolute; 
+    background-color: #2b1800a8; 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
 }
 
 .window img {
-  display: block;
-  margin: 14px auto 10px;
-  object-fit: cover;
+    display: block;
+    margin: 14px auto 10px;
+    object-fit: cover;
 }
 
+#notes.window {
+    width: 520px;
+    height: 480px;
+}
+
+.notes-header-container {
+    position: relative;
+    width: 100%;
+    padding: 12px 16px 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .windowheader {
-  width: min(100%, 280px);
-  display: flex;
-  align-items: center;
-  cursor: grab;
-  justify-content: center;
-  margin: 0;
-  padding: 2px 18px;
-  border: 1px solid rgba(255, 131, 29, 0.5);
-  border-radius: 14px;
-  box-sizing: border-box;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  background: rgba(0, 0, 0, 0.28);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    width: min(100%, 280px);
+    display: flex;
+    align-items: center;
+    cursor: none;
+    justify-content: center;
+    margin: 0;
+    padding: 2px 18px;
+    border: 1px solid rgba(255, 131, 29, 0.5);
+    border-radius: 14px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: rgba(0, 0, 0, 0.28);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
 .windowheader:active {
-  cursor: grabbing;
+    cursor: none;
 }
 
 .headertext {
-  margin: 0px;
-  color: #fff;
-  font-weight: 500
+    margin: 0px;
+    color: #fff;
+    font-weight: 500;
 }
 
-.toolbar{
+.closebutton {
+    width: 16px;
+    height: 16px;
+    cursor: none;
+    background-color: #fa7900;
+    border-radius: 16px;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 16px;      
+    right: 16px;   
+    z-index: 2;    
+}
+
+.toolbar {
     display: flex; 
     border: medium solid #000000; 
     background-color: rgba(0, 0, 0, 0.507); 
     border-radius: 25px; 
     justify-content: space-between; 
     backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
     margin-left: 16px; 
     font-weight: 700; 
     padding: 2px 12px; 
     border-radius: 16px;
+    align-items: center;
 }
 
-.selected{
-  cursor: default;
+#notesshortcut {
+    cursor: none;
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+}
+
+.note-preview-item {
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    cursor: none;
+    transition: background-color 0.2s ease;
+}
+
+.note-preview-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.note-preview-item.active {
+    background-color: rgba(255, 131, 29, 0.4); 
+}
+
+.note-preview-item p {
+    color: #ffffff;
+}
+
+.selected {
+    cursor: none;
 }
 
 .selected * {
-  cursor: default;
-}
-
-#notesicon:hover {
-  cursor: none;
+    cursor: none;
 }
 
 #cursorIndicator {
-  width: 18px;
-  height: 18px;
-  position: fixed;
-  z-index: 1000;
-  pointer-events: none;
-  display: none;
-  border: 1px solid #ffffff;
-  border-radius: 50%;
-  background: #914600;
-  transform: translate(-50%, -50%);
-  transition: transform 90ms ease-out;
+    width: 18px;
+    height: 18px;
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none; 
+    display: none;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    background: #914600;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 90ms ease-out, background-color 0.15s ease;
 }
 
 #cursorIndicator.visible {
-  display: block;
+    display: block;
+}
+
+#cursorIndicator.hovering {
+    background: #fa7900 !important;
+    transform: translate(-50%, -50%) scale(1.3);
 }
 
 #cursorIndicator.clicked {
-  transform: translate(-50%, -50%) scale(0.55);
+    transform: translate(-50%, -50%) scale(0.6) !important;
 }
+
