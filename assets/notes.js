@@ -1,7 +1,7 @@
 var content = [
   {
     title: "Welcome",
-    date: "06/28/2023",
+    date: "09/12/2026",
     content: `
         <strong>Welcome to the Notes App</strong><br><br>
         This is a place to keep stuff, it's a note-taking app, you know the drill.<br><br>
@@ -9,39 +9,10 @@ var content = [
     `
   },
   {
-    title: "Sample Text",
-    date: "06/28/2023",
-    content: `Here's some sample text`
-  },
-  {
-    title: "Daily Plan",
-    date: "09/12/2026",
-    content: `
-        <strong>Today's plan</strong><br><br>
-        Review the weather forecast<br>
-        Finish the current project<br>
-        Take a break and go for a walk
-    `
-  },
-  {
-    title: "Project Ideas",
-    date: "09/12/2026",
-    content: `
-        <strong>Ideas to explore</strong><br><br>
-        Add a simple calendar app<br>
-        Save notes between sessions<br>
-        Add keyboard shortcuts for common actions
-    `
-  },
-  {
-    title: "Quick List",
-    date: "09/12/2026",
-    content: `
-        <strong>Things to remember</strong><br><br>
-        Check messages<br>
-        Update the task list<br>
-        Plan tomorrow's priorities
-    `
+    title: "Alana",
+    date: "08/31/2026",
+    content: `Alana was my dog, she was a husky mixed with something else, we never figured out what she was mixed it, but whatever it was it made her small.
+    She was very beautiful, sadly, due to health issues, we had to put her down on August 31st, 2026.<br><br> She will forever live in my heart, may she rest in peace"`
   }
 ];
 

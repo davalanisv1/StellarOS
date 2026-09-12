@@ -9,6 +9,7 @@
         <div id="welcome" class="window" style="text-align:center; top: 50%;  left: 50%; transform: translate(-50%, -50%);">
             
             <button class="closebutton" id="welcomeclose" type="button" aria-label="Close welcome window" title="Close"></button>
+            <button class="expandbutton" type="button" aria-label="Expand welcome window" title="Expand window"></button>
             <p class="windowheader" id="welcomeheader">-----</p>
 
             <img src="https://image.tmdb.org/t/p/original/7uCL4gbdmokTWyeYbJxwBo5pbVT.jpg" style="width: 166px; height: 166px; border-radius: 100px;">
@@ -29,33 +30,114 @@
 
         </div>
 
-	    <div id="notesshortcut" style="padding-top: 64px; padding-left: 16px; color:#ffff">
-            <img id="notesicon"src="/images/notes.png" style="height:50px; width:50px; transform: scale(2)">
-		    <p>Notes</p>
-	    </div>
-        
-    <div id="cursorIndicator" aria-hidden="true"></div>
-    <div class="window" id="notes" style="display: none; top: calc(50% - 240px); left: calc(50% - 260px); position: absolute; border: solid #ff831d; width: 520px; height: 480px; box-sizing: border-box; border-radius: 32px; background-color: #2b1800a8; backdrop-filter: blur(10px); flex-direction: column; overflow: hidden;">
-        <div class="windowheader" id="notesheader" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 0 16px; color: #fff;">
-            <div class="closebutton" id="notesclose" aria-label="Close notes window" title="Close" style="cursor: pointer;"></div>
-            <p class="windowheader" id="notesheader">---</p>
-        </div>
+        <div style="display: flex; flex-direction: row; gap: 32px; padding-top: 64px; padding-left: 24px;">
 
-        <div style="display: flex; flex-direction: row; flex-grow: 1; padding: 16px; box-sizing: border-box; overflow: hidden; font-family: Courier, monospace;">
-            <div id="sidebar" style="background-color: rgba(249, 249, 249, 0.15); width: 150px; margin-right: 16px; padding: 12px; border-radius: 16px; overflow-y: auto; flex-shrink: 0; text-align: left;">
+            <div id="notesshortcut" style="color:#ffff; text-align: center; cursor: pointer; width: 80px;">
+                <img id="notesicon" src="/images/notes.png" style="height: 50px; width: 50px; display: block; margin: 0 auto 12px; transform: scale(1.5);">
+                <p style="margin: 0; font-size: 13px;">Notes</p>
             </div>
 
-            <div style="overflow-y: auto; flex-grow: 1; text-align: left; padding-right: 4px; color: #fff;">
-                <div id="notesContent" contenteditable="true" style="outline: none; min-height: 100%; color: #fff">
+            <div id="weathershortcut" style="color:#ffff; text-align: center; cursor: pointer; width: 80px;">
+                <img id="weathericon" src="/images/weather.png" style="height: 50px; width: 50px; display: block; margin: 0 auto 12px; transform: scale(1.5);">
+                <p style="margin: 0; font-size: 13px;">Weather</p>
+            </div>
+        </div>
+        
+        <div id="cursorIndicator" aria-hidden="true"></div>
+        <div class="window" id="notes" style="display: none; top: calc(50% - 260px); left: calc(50% - 280px); position: absolute; border: solid #ff831d; box-sizing: border-box; border-radius: 32px; background-color: #2b1800a8; backdrop-filter: blur(10px); flex-direction: column; overflow: hidden;">
+            <p class="windowheader" id="notesheader">---</p>
+            <div class="closebutton" id="notesclose" aria-label="Close notes window" title="Close" style="cursor: pointer;"></div>
+            <button class="expandbutton" type="button" aria-label="Expand notes window" title="Expand window"></button>
+
+
+            <div style="display: flex; flex-direction: row; flex-grow: 1; padding: 16px; box-sizing: border-box; overflow: hidden; font-family: Courier, monospace;">
+                <div id="sidebar" style="background-color: rgba(249, 249, 249, 0.15); width: 150px; margin-right: 16px; padding: 12px; border-radius: 16px; overflow-y: auto; flex-shrink: 0; text-align: left;"></div>
+                <div style="overflow-y: auto; flex-grow: 1; text-align: left; padding-right: 4px; color: #fff;">
+                    <div id="notesContent" contenteditable="true" style="outline: none; min-height: 100%; color: #fff"></div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <div class="window" id="weather" style="display: none; top: calc(50% - 260px); left: calc(50% - 280px);">
+    
+            <p class="windowheader" id="weatherheader">---</p>
+            <button class="closebutton" id="weatherclose" type="button" aria-label="Close weather window" title="Close"></button>
+            <button class="expandbutton" type="button" aria-label="Expand weather window" title="Expand window"></button>
 
+            <div class="weather-telemetry-container" style="padding: 16px; display: flex; flex-direction: column; overflow: hidden; height: 100%; box-sizing: border-box;">
+        
+                <div style="text-align: center; margin-bottom: 12px; flex-shrink: 0;">
+                    <h2 style="margin: 0; font-size: 15px; letter-spacing: 2px;">NORTHVILLE, MI</h2>
+                    <div style="font-size: 10px; opacity: 0.5; margin-top: 2px;">
+                        Latitude: <span id="telemetryLat">--</span> | Longitude: <span id="telemetryLon">--</span> | Elevation: <span id="telemetryElev">--</span>m
+                    </div>
+                </div>
+
+                <div style="overflow-y: auto; flex-grow: 1; width: 100%; padding-right: 4px; font-family: Courier, monospace; box-sizing: border-box;">
+            
+                    <div style="margin-bottom: 16px;">
+                        <div style="color: #ff831d; font-size: 12px; font-weight: bold; border-bottom: 1px solid rgba(255,131,29,0.3); padding-bottom: 2px; margin-bottom: 6px;">[01] CURRENT CONDITIONS</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 11px; background: rgba(255,255,255,0.04); padding: 8px; border-radius: 8px;">
+                            <div>Time Interval: <span id="current_time" style="color:#ff831d;">--</span></div>
+                            <div>Cycle Step: <span id="current_interval" style="color:#ff831d;">--</span>s</div>
+                            <div>Temperature: <span id="weatherTemp" style="color:#ff831d;">--</span></div>
+                            <div>Feels Like: <span id="weatherApparent" style="color:#ff831d;">--</span></div>
+                            <div>Relative Humidity: <span id="weatherHumidity" style="color:#ff831d;">--</span></div>
+                            <div>Day or Night: <span id="current_is_day" style="color:#ff831d;">--</span></div>
+                            <div>Cloud Cover: <span id="current_cloud_cover" style="color:#ff831d;">--</span></div>
+                            <div>Precipitation Accum: <span id="current_precipitation" style="color:#ff831d;">--</span></div>
+                            <div>Rain: <span id="current_rain" style="color:#ff831d;">--</span></div>
+                            <div>Showers: <span id="current_showers" style="color:#ff831d;">--</span></div>
+                            <div>Snowfall: <span id="current_snowfall" style="color:#ff831d;">--</span></div>
+                            <div>Wind Speed: <span id="current_wind_speed" style="color:#ff831d;">--</span></div>
+                            <div>Wind Direction: <span id="current_wind_direction" style="color:#ff831d;">--</span></div>
+                            <div>Wind Gusts: <span id="current_wind_gusts" style="color:#ff831d;">--</span></div>
+                            <div style="grid-column: span 2;">Conditions: <span id="weatherDesc" style="color:#ff831d;">--</span></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <div style="color: #ff831d; font-size: 12px; font-weight: bold; border-bottom: 1px solid rgba(255,131,29,0.3); padding-bottom: 2px; margin-bottom: 6px;">[02] DAILY FORECAST</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 11px; background: rgba(255,255,255,0.04); padding: 8px; border-radius: 8px;">
+                            <div>Target Date: <span id="daily_time" style="color:#ff831d;">--</span></div>
+                            <div>WMO Condition Code: <span id="daily_weather_code" style="color:#ff831d;">--</span></div>
+                            <div>Max Temp: <span id="daily_max_temp" style="color:#ff831d;">--</span></div>
+                            <div>Min Temp: <span id="daily_min_temp" style="color:#ff831d;">--</span></div>
+                            <div>High Feels Like: <span id="daily_max_apparent" style="color:#ff831d;">--</span></div>
+                            <div>Low Feels Like: <span id="daily_min_apparent" style="color:#ff831d;">--</span></div>
+                            <div>Sunrise: <span id="weatherSunrise" style="color:#ff831d;">--</span></div>
+                            <div>Sunset: <span id="weatherSunset" style="color:#ff831d;">--</span></div>
+                            <div>Moonrise: <span id="daily_moonrise" style="color:#ff831d;">--</span></div>
+                            <div>Moonset: <span id="daily_moonset" style="color:#ff831d;">--</span></div>
+                            <div>Moon Phase: <span id="daily_moon_phase" style="color:#ff831d;">--</span></div>
+                            <div>Daylight Duration: <span id="daily_daylight_duration" style="color:#ff831d;">--</span></div>
+                            <div>Sunshine Duration: <span id="daily_sunshine_duration" style="color:#ff831d;">--</span></div>
+                            <div>Max Solar UV Index: <span id="daily_uv_max" style="color:#ff831d;">--</span></div>
+                            <div>Clear Sky UV Max: <span id="daily_uv_clear" style="color:#ff831d;">--</span></div>
+                            <div>Max Wind Speed: <span id="daily_wind_max" style="color:#ff831d;">--</span></div>
+                            <div>Dominant Wind Direction: <span id="daily_wind_dir" style="color:#ff831d;">--</span></div>
+                            <div>Max Wind Gusts: <span id="daily_gust_max" style="color:#ff831d;">--</span></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="color: #ff831d; font-size: 12px; font-weight: bold; border-bottom: 1px solid rgba(255,131,29,0.3); padding-bottom: 2px; margin-bottom: 6px;">[03] HOURLY DETAILS</div>
+                        <div style="font-size: 10px; opacity: 0.7; margin-bottom: 4px;">Current local hour:</div>
+                        <div id="hourlyContainer" style="display: flex; flex-direction: column; gap: 4px; font-size: 11px; background: rgba(255,255,255,0.04); padding: 8px; border-radius: 8px;">
+                            Scanning time registers...
+                        </div>
+                    </div>
+                </div>
+        
+                <div style="text-align: center; font-size: 9px; opacity: 0.4; margin-top: 8px; flex-shrink: 0;">
+                    API RESPONSE TIME: <span id="telemetryGenTime">--</span>ms | TIME ZONE: <span id="telemetryTZ">--</span>
+                </div>
+            </div>
+        </div>
 
         <script src="/assets/script.js"></script>
-        <script src="/assets/apps.js"></script>
+        <script src="assets/weather.js"></script>
+        <script src="/assets/notes.js"></script>
         <link rel="stylesheet" type="text/css" href="assets/style.css" />
 
     </body>
