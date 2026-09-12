@@ -32,6 +32,7 @@ if (cursorCircle) {
     cursorCircle.style.left = e.clientX + "px";
     cursorCircle.style.top = e.clientY + "px";
 
+    // FIXED: Patched in the missing weather shortcut identifier target
     var isClickable = e.target.closest([
       'button',
       'a',
@@ -41,6 +42,7 @@ if (cursorCircle) {
       '.closebutton',
       '.note-preview-item',
       '#notesshortcut',
+      '#weathershortcut',
       '#welcomeopen',
       '#toolbaropen',
       '#time'
@@ -53,8 +55,9 @@ if (cursorCircle) {
     }
   });
 
+  // FIXED: Replaced className = "" with classList.remove to prevent layout wipeouts
   document.addEventListener("mouseleave", function() {
-    cursorCircle.className = ""; 
+    cursorCircle.classList.remove("visible", "hovering", "clicked"); 
   });
 
   window.addEventListener("mousedown", function() {
@@ -106,7 +109,7 @@ function dragElement(element) {
   function startDragging(e) {
     e = e || window.event;
 
-    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
+    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.classList.contains('closebutton')) return;
 
     e.preventDefault();
     pos3 = e.clientX;
