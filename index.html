@@ -5,7 +5,8 @@
     <body  style="background-size: cover; font-family:Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif; background-image: url('images/int.jpg')">
         
 
-        
+        <div id="cursorIndicator" aria-hidden="true"></div>
+
         <div id="welcome" class="window" style="text-align:center; top: 50%;  left: 50%; transform: translate(-50%, -50%);">
             
             <button class="closebutton" id="welcomeclose" type="button" aria-label="Close welcome window" title="Close"></button>
@@ -43,7 +44,6 @@
             </div>
         </div>
         
-        <div id="cursorIndicator" aria-hidden="true"></div>
         <div class="window" id="notes" style="display: none; top: calc(50% - 260px); left: calc(50% - 280px); position: absolute; border: solid #ff831d; box-sizing: border-box; border-radius: 32px; background-color: #2b1800a8; backdrop-filter: blur(10px); flex-direction: column; overflow: hidden;">
             <p class="windowheader" id="notesheader">---</p>
             <div class="closebutton" id="notesclose" aria-label="Close notes window" title="Close" style="cursor: pointer;"></div>
